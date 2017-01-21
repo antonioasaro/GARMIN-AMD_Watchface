@@ -70,12 +70,13 @@ class AMD_WatchfaceView extends Ui.WatchFace {
         var stats = Sys.getSystemStats(); 
         var battery = stats.battery;
         dc.setColor(0xBBBBBB, Gfx.COLOR_TRANSPARENT);
-        if (battery < 100) { dc.drawText(22, 102, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
+        if (battery < 100) { dc.drawText(22, 101, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
+        if (battery <= 50) { dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT); }
         if (battery <= 25) { dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT); }
-        dc.fillRectangle(15, 76, 9, 3);
-        dc.fillRectangle(13, 79, 14, 25);
+        dc.fillRectangle(15, 74, 9, 3);
+        dc.fillRectangle(13, 77, 14, 25);
         dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
-        dc.fillRectangle(15, 81, 10, (20 * (100 - battery)) / 100);
+        dc.fillRectangle(15, 79, 10, (20 * (100 - battery)) / 100);
     }
 
     // Called when this View is removed from the screen. Save the
