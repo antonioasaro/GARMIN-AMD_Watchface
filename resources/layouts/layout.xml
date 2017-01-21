@@ -1,0 +1,6 @@
+<layout id="WatchFace">
+    <label  x="46"     y="14"  id="id_date"      font="Gfx.FONT_MEDIUM"></label>
+    <bitmap x="148"    y="13"  id="id_btstatus"  filename="../drawables/connect.png"></bitmap>
+    <label  x="116"    y="32"  id="id_time"      text="" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_THAI_HOT" color="Gfx.COLOR_GREEN"/>
+    <bitmap x="center" y="132" id="id_amd_logo"  filename="../drawables/amd_logo_final.png" ></bitmap>
+</layout>
