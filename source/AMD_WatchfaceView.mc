@@ -5,21 +5,9 @@ using Toybox.Lang as Lang;
 using Toybox.Time as Time;
 using Toybox.Time.Gregorian as Calendar;
 using Toybox.Timer as Timer;
+using Toybox.ActivityMonitor as AttMon;
 
 class AMD_WatchfaceView extends Ui.WatchFace {
-	hidden const MASTER_TIMER_SECS = 60;
-    hidden var alignTimer;
-    hidden var masterTimer;
-    hidden var BTstatusBitmap;
-    
-    function onMasterTimer() {
-        requestUpdate();
-    }
-    
-    function onAlignTimer() {
-        masterTimer = new Timer.Timer();
-        masterTimer.start(method(:onMasterTimer), MASTER_TIMER_SECS * 1000, true);
-    }
 
     function initialize() {
         WatchFace.initialize();
@@ -27,11 +15,6 @@ class AMD_WatchfaceView extends Ui.WatchFace {
 
     // Load your resources here
     function onLayout(dc) {
-        var clockTime = Sys.getClockTime();
-    	var sec = clockTime.sec; 
-        alignTimer = new Timer.Timer();
-////        alignTimer.start(method(:onAlignTimer), (60 - sec) * 1000, false);
-    
        setLayout(Rez.Layouts.WatchFace(dc));
     }
 
@@ -57,12 +40,18 @@ class AMD_WatchfaceView extends Ui.WatchFace {
         var timeView = View.findDrawableById("id_time");
         timeView.setText(timeString);    
     
+        var BTstatusBitmap;
         var devSettings = Sys.getDeviceSettings();
         if (devSettings.phoneConnected) { 
 	 		BTstatusBitmap = Ui.loadResource(Rez.Drawables.ConnectIcon);
         } else {
 	 		BTstatusBitmap = Ui.loadResource(Rez.Drawables.DisconnectIcon);
 	 	}
+	 	
+	 	var activity= AttMon.getInfo();
+	 	var steps = activity.steps;
+        var stepsView = View.findDrawableById("id_steps");
+        stepsView.setText(steps.toString());
 
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
