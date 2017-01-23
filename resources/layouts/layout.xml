@@ -3,6 +3,7 @@
     <bitmap x="148"    y="12"  id="id_btstatus"  filename="../drawables/connect.png"></bitmap>
     <bitmap x="48"     y="27"  id="id_feet"      filename="../drawables/feet.png"></bitmap>
     <label  x="78"     y="21"  id="id_steps"     font="Gfx.FONT_MEDIUM"></label>
-    <label  x="116"    y="33"  id="id_time"      text="" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_THAI_HOT" color="Gfx.COLOR_GREEN"/>
+    <label  x="70"     y="33"  id="id_hour"      text="" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_THAI_HOT" color="Gfx.COLOR_DK_GREEN"/>
+    <label  x="150"    y="33"  id="id_mins"      text="" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_THAI_HOT" color="Gfx.COLOR_GREEN"/>
     <bitmap x="center" y="130" id="id_amd_logo"  filename="../drawables/amd_logo_final.png" ></bitmap>
 </layout>

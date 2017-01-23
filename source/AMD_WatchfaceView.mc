@@ -8,6 +8,8 @@ using Toybox.Timer as Timer;
 using Toybox.ActivityMonitor as AttMon;
 
 class AMD_WatchfaceView extends Ui.WatchFace {
+    var bigFont;
+    var bigFontBold;
 
     function initialize() {
         WatchFace.initialize();
@@ -15,6 +17,8 @@ class AMD_WatchfaceView extends Ui.WatchFace {
 
     // Load your resources here
     function onLayout(dc) {
+       bigFont     = Ui.loadResource(Rez.Fonts.id_bigfont);
+       bigFontBold = Ui.loadResource(Rez.Fonts.id_bigfontbold);
        setLayout(Rez.Layouts.WatchFace(dc));
     }
 
@@ -36,9 +40,12 @@ class AMD_WatchfaceView extends Ui.WatchFace {
         var clockTime = Sys.getClockTime();
         var hour = clockTime.hour; 
         if (hour > 12) { hour = hour - 12; }
-        var timeString = Lang.format("$1$:$2$", [hour, clockTime.min.format("%02d")]);
-        var timeView = View.findDrawableById("id_time");
-        timeView.setText(timeString);    
+        var hourString = Lang.format("$1$", [hour]);
+        var minsString = Lang.format("$1$", [clockTime.min.format("%02d")]);
+        var hourView = View.findDrawableById("id_hour");
+        var minsView = View.findDrawableById("id_mins");
+        hourView.setFont(bigFontBold); hourView.setText(hourString);    
+        minsView.setFont(bigFont);     minsView.setText(minsString);    
     
         var BTstatusBitmap;
         var devSettings = Sys.getDeviceSettings();
