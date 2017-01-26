@@ -42,14 +42,6 @@ class AMD_WatchfaceView extends Ui.WatchFace {
         var timeView = View.findDrawableById("id_time");
         timeView.setText(timeString);    
     
-        var BTstatusBitmap;
-        var devSettings = Sys.getDeviceSettings();
-        if (devSettings.phoneConnected) { 
-	 		BTstatusBitmap = Ui.loadResource(Rez.Drawables.ConnectIcon);
-        } else {
-	 		BTstatusBitmap = Ui.loadResource(Rez.Drawables.DisconnectIcon);
-	 	}
-	 	
 	 	var activity= AttMon.getInfo();
 	 	var steps = activity.steps;
         var stepsView = View.findDrawableById("id_steps");
@@ -58,6 +50,16 @@ class AMD_WatchfaceView extends Ui.WatchFace {
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
 
+        var BTstatusBitmap;
+        var devSettings = Sys.getDeviceSettings();
+        if (devSettings.phoneConnected) { 
+	 		BTstatusBitmap = Ui.loadResource(Rez.Drawables.ConnectIcon);
+        } else {
+	 		BTstatusBitmap = Ui.loadResource(Rez.Drawables.DisconnectIcon);
+	 	}
+	 	var btstatusView = View.findDrawableById("id_btstatus");
+        dc.drawBitmap(btstatusView.locX, btstatusView.locY, BTstatusBitmap);
+	 	
         var stats = Sys.getSystemStats(); 
         var battery = stats.battery;
         dc.setColor(0xBBBBBB, Gfx.COLOR_TRANSPARENT);
