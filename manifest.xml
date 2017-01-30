@@ -3,12 +3,16 @@
 
         <iq:products>
             <iq:product id="fr230"/>
+            <iq:product id="fr235"/>
+            <iq:product id="fr630"/>
+            <iq:product id="fr735xt"/>
         </iq:products>
 
         <iq:permissions>
         </iq:permissions>
 
         <iq:languages>
+            <iq:language>eng</iq:language>
         </iq:languages>
 
     </iq:application>
